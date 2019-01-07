@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: a0d38a0bffab5de49a8a96f4c599c590
+timeCreated: 1538899565
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - menuCanvas: {fileID: 223513994629267500, guid: 1b2dee23bf290c84ba4e8bfca8c3b312,
+      type: 2}
+  - inGameCanvas: {instanceID: 0}
+  - gameOverCanvas: {instanceID: 0}
+  - source: {instanceID: 0}
+  - soundtrack: {instanceID: 0}
+  - fireSound: {fileID: 8300000, guid: 102913c79da81f84ea8e307d8acad071, type: 3}
+  - playerHitSound: {fileID: 8300000, guid: cf58a6d4f128a01439395d95c62bf3e2, type: 3}
+  - alienHitSound: {fileID: 8300000, guid: 8b5451876d1b7ac41902bbf2afcf6c25, type: 3}
+  - alienFire: {fileID: 8300000, guid: dd245c2ff009c3a44b2363bd7c48ec46, type: 3}
+  - thrust: {fileID: 8300000, guid: 635d71ffb41460743ad4493a345e7a06, type: 3}
+  - SoundTrack: {fileID: 8300000, guid: 86e674bbbfc2a6447bff94abf8428a2f, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

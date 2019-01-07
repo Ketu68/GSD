@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6fba7a7aee748af428c2ab5e50cc478d
+timeCreated: 1538077383
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - zbullet: {instanceID: 0}
+  - explosion: {instanceID: 0}
+  - hitSound: {fileID: 8300000, guid: 642f0e539e577e745a56646a41023abd, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 98ec350fd91790c4da4681e441c96481
+timeCreated: 1538059453
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - laser: {instanceID: 0}
+  - explosion: {instanceID: 0}
+  - fireSound: {fileID: 8300000, guid: 102913c79da81f84ea8e307d8acad071, type: 3}
+  - hitSound: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
