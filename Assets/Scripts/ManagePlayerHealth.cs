@@ -14,12 +14,7 @@ public class ManagePlayerHealth : MonoBehaviour
     public Image meterImage;
     public float startingHitPoints=96f, maxHitPoints=100f;
 
-    public GameObject explosion, laser, newObject;
-
-    //public enum GameState
-    //{
-    //    menu, inGame, paused, gameOver
-    //}
+    public GameObject explosion, laser;
 
     void Start()
     {
@@ -32,8 +27,11 @@ public class ManagePlayerHealth : MonoBehaviour
 
     void FixedUpdate()
     {
-        meterImage.fillAmount = hp / 100f;
-        hpText.text = "Health:" + (meterImage.fillAmount * 100f);
+        if (!GSDManager.Instance.gamePaused)
+        {
+            meterImage.fillAmount = hp / 100f;
+            hpText.text = "Health:" + (meterImage.fillAmount * 100f);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -61,6 +59,8 @@ public class ManagePlayerHealth : MonoBehaviour
         else
         {
             Destroy(transform.gameObject);
+            GSDManager.Instance.source.Stop();
+            GSDManager.Instance.soundtrack.Stop();
             GSDManager.Instance.GameOver();
         }
     }

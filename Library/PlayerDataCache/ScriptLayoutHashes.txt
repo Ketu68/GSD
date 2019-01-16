@@ -180,7 +180,7 @@ b11448bc44f49db3e26525de9acc4a98 TextMeshPro-2017.2-Editor.dll:TMPro.EditorUtili
 05524b8f659e7bfe5756d1335fec24ba TextMeshPro-2017.2-Editor.dll:TMPro.EditorUtilities.TMPro_TextContainerEditor
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:TMPro.TMP_DigitValidator
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:TMPro.Examples.TeleType
-2be2d03c649ed0990f794493b054750c Assembly-CSharp.dll:.ManagePlayerHealth
+df4cdaea047ad61abbd9e6286acc4dcd Assembly-CSharp.dll:.ManagePlayerHealth
 8a50d3d11bf0cc541f5c35347dd25633 Assembly-CSharp.dll:TMPro.Examples.ShaderPropAnimator
 76015de5fcb247eeb8df66c001d5a22d Assembly-CSharp.dll:TMPro.Examples.TMP_FrameRateCounter
 b8f04bdad423045528c67dfa4c3dca0d Assembly-CSharp.dll:TMPro.Examples.VertexShakeA
@@ -206,7 +206,7 @@ ef9124a40ca18b0363879637b2d025d5 Assembly-CSharp.dll:.MoveNPC
 64eb32cc721b1cc68a91ed57461e188c UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.RemoteTestResultSender
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 aa9d1bd0cc771545f2ae1f63a6d0ed6a Assembly-CSharp.dll:TMPro.Examples.TMP_TextEventCheck
-a4905da247f85da6d1ca0e94930c55e7 Assembly-CSharp.dll:.GSDManager
+07c465e243a219869e23ec56c441d6f3 Assembly-CSharp.dll:.GSDManager
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 a30449fabdab9dcb0aa78e3b72a1b1a3 Assembly-CSharp.dll:.bullet
 f0f0ab6b8a39d0572cfa4ea315d84fbf Assembly-CSharp.dll:TMPro.Examples.Benchmark04

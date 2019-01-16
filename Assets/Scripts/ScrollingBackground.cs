@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class ScrollingBackground : MonoBehaviour
 {
-
-    public float speed = 0.1f;
+    [Range(1f, 20f)]
+    public float scrollSpeed = 1f;
+    public float scrollOffset;
+    Vector2 startPos;
+    float newPos;
 
     void Start()
     {
-
+        startPos = transform.position;
     }
 
-    void FixedUpdate()
+    void Update()
     {
-
-        GetComponent<Renderer>().material.mainTextureOffset = new Vector2(Time.time * speed, 0);
-
+        newPos = Mathf.Repeat(Time.time * -scrollSpeed, scrollOffset);
+        transform.position = startPos + Vector2.right * newPos;
     }
 }

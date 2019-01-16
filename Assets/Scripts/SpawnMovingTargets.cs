@@ -16,16 +16,19 @@ public class SpawnMovingTargets : MonoBehaviour
 
     void FixedUpdate()
     {
-        timer += Time.deltaTime;
-        float xrange = Random.Range(4, 22);
-        float yrange = Random.Range(-10, 10);
-
-        if (timer >= 1 && GSDManager.Instance.enemies < maxenemies)
+        if (!GSDManager.Instance.gamePaused)
         {
-            Vector3 newPosition = new Vector3(GameObject.Find("gsdefender").transform.position.x + xrange, transform.position.y + yrange, 0);
-            Instantiate(newObject, newPosition, Quaternion.identity);
-            timer = 0;
-            GSDManager.Instance.enemies++;
+            timer += Time.deltaTime;
+            float xrange = Random.Range(4, 22);
+            float yrange = Random.Range(-10, 10);
+
+            if (timer >= 1 && GSDManager.Instance.enemies < maxenemies)
+            {
+                Vector3 newPosition = new Vector3(GameObject.Find("gsdefender").transform.position.x + xrange, transform.position.y + yrange, 0);
+                Instantiate(newObject, newPosition, Quaternion.identity);
+                timer = 0;
+                GSDManager.Instance.enemies++;
+            }
         }
     }
 }

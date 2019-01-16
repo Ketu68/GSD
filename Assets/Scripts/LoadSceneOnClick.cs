@@ -7,7 +7,6 @@ public class LoadSceneOnClick : MonoBehaviour {
 
     public void LoadByIndex(int sceneIndex)
     {
-        //SceneManager.LoadScene(sceneIndex);
-        GSDManager.Instance.StartGame();
+    SceneManager.LoadScene(sceneIndex);
     }
 }

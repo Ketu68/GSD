@@ -24,7 +24,7 @@ public class MoveNPC : MonoBehaviour
 
     void Start()
     {
-
+        GSDManager.Instance.gamePaused = false;
     }
 
     void Update()
@@ -34,80 +34,82 @@ public class MoveNPC : MonoBehaviour
 
     void FixedUpdate()
     {
-
-        timer += Time.deltaTime;
-
-        if (timer >= 1f)
+        if (!GSDManager.Instance.gamePaused)
         {
-            moving = true;
-            xPos = Random.Range(-4.5f, 4.5f);
-            yPos = Random.Range(-4.5f, 4.5f);
+            timer += Time.deltaTime;
 
-            int rand = Random.Range(1, 4);
-
-            switch(rand)
+            if (timer >= 1f)
             {
-                case 1:
-                    {
-                        desiredPos = new Vector3(xPos, transform.position.y, transform.position.z);
-                        break;
-                    }
-                case 2:
-                    {
-                        desiredPos = new Vector3(transform.position.x, yPos, transform.position.z);
-                        break;
-                    }
-                case 3:
-                    {
-                        desiredPos = new Vector3(xPos, yPos, transform.position.z);
-                        break;
-                    }
-                case 4:
-                    {
-                        desiredPos = new Vector3(yPos, xPos, transform.position.z);
-                        break;
-                    }
-                case 5:
-                    {
-                        desiredPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-                        break;
-                    }
+                moving = true;
+                xPos = Random.Range(-4.5f, 4.5f);
+                yPos = Random.Range(-4.5f, 4.5f);
+
+                int rand = Random.Range(1, 5);
+
+                switch (rand)
+                {
+                    case 1:
+                        {
+                            desiredPos = new Vector3(xPos, transform.position.y, transform.position.z);
+                            break;
+                        }
+                    case 2:
+                        {
+                            desiredPos = new Vector3(transform.position.x, yPos, transform.position.z);
+                            break;
+                        }
+                    case 3:
+                        {
+                            desiredPos = new Vector3(xPos, yPos, transform.position.z);
+                            break;
+                        }
+                    case 4:
+                        {
+                            desiredPos = new Vector3(yPos, xPos, transform.position.z);
+                            break;
+                        }
+                    case 5:
+                        {
+                            desiredPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                            break;
+                        }
+                }
+
+                startPosition = transform.position;
+                startTime = Time.time;
+                timer = 0;
             }
 
-            startPosition = transform.position;
-            startTime = Time.time;
-            timer = 0;
-        }
+            speed = 1f;
 
-        speed = 1f;
-
-        if (moving) 
-        {
-            float timePassed = Time.time - startTime; 
-            float distanceCovered = timePassed * speed;
-
-            transform.position = Vector3.Lerp(startPosition, desiredPos, distanceCovered);
-
-            if (distanceCovered >= 2)
+            if (moving)
             {
-                moving = false;
+                float timePassed = Time.time - startTime;
+                float distanceCovered = timePassed * speed;
+
+                transform.position = Vector3.Lerp(startPosition, desiredPos, distanceCovered);
+
+                if (distanceCovered >= 2)
+                {
+                    moving = false;
+                }
             }
+
+            float shootrand = Random.Range(1, 140);
+
+            if (shootrand == 3) Shoot();
+
+            Vector3 viewPortPosition = Camera.main.WorldToViewportPoint(transform.position);
+            Vector3 viewPortXDelta = Camera.main.WorldToViewportPoint(transform.position + Vector3.left / 2);
+            Vector3 viewPortYDelta = Camera.main.WorldToViewportPoint(transform.position + Vector3.up / 2);
+
+            float deltaX = viewPortPosition.x - viewPortXDelta.x;
+            float deltaY = viewPortPosition.y - viewPortYDelta.y;
+
+            viewPortPosition.x = Mathf.Clamp(viewPortPosition.x, 0 + deltaX, 1 - deltaX);
+            viewPortPosition.y = Mathf.Clamp(viewPortPosition.y, 0 + deltaY, 1 - deltaY);
+            transform.position = Camera.main.ViewportToWorldPoint(viewPortPosition);
         }
-
-        float shootrand = Random.Range(1, 140);
-
-        if (shootrand == 3)  Shoot();
-
-        Vector3 viewPortPosition = Camera.main.WorldToViewportPoint(transform.position);
-        Vector3 viewPortXDelta = Camera.main.WorldToViewportPoint(transform.position + Vector3.left / 2);
-        Vector3 viewPortYDelta = Camera.main.WorldToViewportPoint(transform.position + Vector3.up / 2);
-
-        float deltaX = viewPortPosition.x - viewPortXDelta.x;
-        float deltaY = viewPortPosition.y - viewPortYDelta.y;
-
-        viewPortPosition.x = Mathf.Clamp(viewPortPosition.x, 0 + deltaX, 1 - deltaX);
-        viewPortPosition.y = Mathf.Clamp(viewPortPosition.y, 0 + deltaY, 1 - deltaY);
-        transform.position = Camera.main.ViewportToWorldPoint(viewPortPosition);
     }
 
     void Shoot()

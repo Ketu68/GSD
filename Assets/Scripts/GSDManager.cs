@@ -13,13 +13,13 @@ public class GSDManager : MonoBehaviour
     public AudioClip fireSound, playerHitSound, alienHitSound, alienFire, thrust, SoundTrack;
 
     public GSDManager GetInstance() { return Instance; }
-    public GameState currentGameState = GameState.menu;
-    public GameObject MainMenuUI, OptionsMenuUI, HelpMenuUI, PauseMenuUI, GameOverMenuUI;
+    public GameObject PauseMenuUI, GameOverMenuUI, scoreUI, healthUI, healthBar;
 
     public int score, enemies;
     public string nextSceneName;
     public float waitTime=3f;
     public bool music = true;
+    public bool gamePaused = true;
 
     public enum GameState
     {
@@ -29,7 +29,6 @@ public class GSDManager : MonoBehaviour
     public void Awake()
     {
         Instance = this;
-        currentGameState = GameState.menu;
     }
 
     void Start()
@@ -40,32 +39,29 @@ public class GSDManager : MonoBehaviour
     public void StartGame()
     {
         PauseMenuUI.SetActive(false);
-        OptionsMenuUI.SetActive(false);
-        HelpMenuUI.SetActive(false);
         GameOverMenuUI.SetActive(false);
-        MainMenuUI.SetActive(false);
+        scoreUI.SetActive(true);
+        healthUI.SetActive(true);
+        healthBar.SetActive(true);
+        gamePaused = false;
 
         Time.timeScale = 1;
 
-        SetGameState(GameState.inGame);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
+
     public void PauseGame()
     {
         SetGameState(GameState.paused);
-
-
     }
 
     public void GameOver()
     {
         SetGameState(GameState.gameOver);
-        //SceneManager.LoadScene(0);
     }
     public void BackToMenu()
     {
         SetGameState(GameState.menu);
-        //SceneManager.LoadScene(0);
     }
 
     public void EndTheScene()
@@ -84,20 +80,22 @@ public class GSDManager : MonoBehaviour
     {
         if (newGameState == GameState.menu)
         {
-            PauseMenuUI.SetActive(false);
-            OptionsMenuUI.SetActive(false);
-            HelpMenuUI.SetActive(false);
-            GameOverMenuUI.SetActive(false);
-            MainMenuUI.SetActive(true);
+
+            GSDManager.Instance.source.mute = true;
+            GSDManager.Instance.soundtrack.mute = true;
+
+            SceneManager.UnloadSceneAsync(1);
+            SceneManager.LoadScene(0);
+
         }
         else if (newGameState == GameState.inGame)
         {
-            PauseMenuUI.SetActive(false);
-            OptionsMenuUI.SetActive(false);
-            HelpMenuUI.SetActive(false);
-            GameOverMenuUI.SetActive(false);
-            MainMenuUI.SetActive(false);
+            scoreUI.SetActive(true);
+            healthUI.SetActive(true);
+            healthBar.SetActive(true);
+            SceneManager.LoadScene(1);
         }
+
         else if (newGameState == GameState.paused)
         {
             if (Time.timeScale == 1)
@@ -119,11 +117,9 @@ public class GSDManager : MonoBehaviour
         }
         else if (newGameState == GameState.gameOver)
         {
-            PauseMenuUI.SetActive(false);
-            OptionsMenuUI.SetActive(false);
-            HelpMenuUI.SetActive(false);
+
             GameOverMenuUI.SetActive(true);
-            MainMenuUI.SetActive(false);
+
 
             if (Time.timeScale == 1)
             {
@@ -131,14 +127,10 @@ public class GSDManager : MonoBehaviour
                 Time.timeScale = 0;
 
             }
-            else if (Time.timeScale == 0)
-            {
-                Time.timeScale = 1;
-            }
+
             GSDManager.Instance.source.mute = true;
             GSDManager.Instance.soundtrack.mute = true;
         }
-        currentGameState = newGameState;
     }
 
     public void QuitGame()
